@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="awesome_bot.WebApiApplication" Language="C#" %>

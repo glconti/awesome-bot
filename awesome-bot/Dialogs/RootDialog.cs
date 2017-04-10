@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using awesome_bot.Dialogs;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -15,15 +17,29 @@ namespace awesome_bot.Dialogs
             return Task.CompletedTask;
         }
 
-        private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
+        private static async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
         {
             var activity = await result as Activity;
 
-            // calculate something for us to return
-            var length = (activity.Text ?? string.Empty).Length;
+            if (activity == null)
+            {
+                await context.PostAsync("Do you want to ask me something?");
+                context.Wait(MessageReceivedAsync);
+                return;
+            }
 
-            // return our reply to the user
-            await context.PostAsync($"You sent {activity.Text} which was {length} characters");
+            var command = activity.Text.Split(' ').FirstOrDefault();
+
+            var commandHandler = CommandHandlerFactory.Handle(command);
+            if(commandHandler == null)
+            {
+                await context.PostAsync($"Sorry, I don't understand {activity.Text}");
+                await context.PostAsync(CommandHandlerFactory.GetGuide());
+                context.Wait(MessageReceivedAsync);
+                return;
+            }
+
+            await commandHandler.Answer(context, activity.Text.Substring(command.Length));
 
             context.Wait(MessageReceivedAsync);
         }

@@ -18,10 +18,10 @@ namespace awesome_bot.Dialogs
         public static string GetGuide()
         {
             var builder = new StringBuilder();
-            builder.AppendLine("Hi, that's what you can ask me:");
+            builder.AppendLine("That's what you can ask me:");
 
             foreach (var commandHandler in CommandHandlers)
-                builder.AppendLine($"{commandHandler.GetHelp()} ");
+                builder.AppendLine(commandHandler.GetHelp());
 
             return builder.ToString();
         }

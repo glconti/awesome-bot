@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using awesome_bot.Dialogs;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
@@ -28,10 +27,11 @@ namespace awesome_bot.Dialogs
                 return;
             }
 
-            var command = activity.Text.Split(' ').FirstOrDefault();
+            var message = RemoveMentions(activity);
+            var command = message.Split(' ').FirstOrDefault();
 
             var commandHandler = CommandHandlerFactory.Handle(command);
-            if(commandHandler == null)
+            if (commandHandler == null)
             {
                 await context.PostAsync($"Sorry, I don't understand {activity.Text}");
                 await context.PostAsync(CommandHandlerFactory.GetGuide());
@@ -43,5 +43,10 @@ namespace awesome_bot.Dialogs
 
             context.Wait(MessageReceivedAsync);
         }
+
+        private static string RemoveMentions(IMessageActivity activity)
+            => activity.GetMentions()
+                .Where(mention => mention.Mentioned.Id == activity.Recipient.Id && mention.Text != null)
+                .Aggregate(activity.Text, (current, mention) => current.Replace(mention.Text, string.Empty));
     }
 }

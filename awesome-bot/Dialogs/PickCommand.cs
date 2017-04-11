@@ -29,7 +29,7 @@ namespace awesome_bot.Dialogs
             }
             if (items.Count == 1)
             {
-                await context.PostAsync($"I definitely chose {items[0]}");
+                await context.PostAsync($"I definitely choose {items[0]}");
                 return;
             }
 

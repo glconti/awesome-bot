@@ -33,13 +33,13 @@ namespace awesome_bot.Dialogs
             var commandHandler = CommandHandlerFactory.Handle(command);
             if (commandHandler == null)
             {
-                await context.PostAsync($"Sorry, I don't understand {activity.Text}");
+                await context.PostAsync($"Sorry, I don't understand {message}");
                 await context.PostAsync(CommandHandlerFactory.GetGuide());
                 context.Wait(MessageReceivedAsync);
                 return;
             }
 
-            await commandHandler.Answer(context, activity.Text.Substring(command.Length));
+            await commandHandler.Answer(context, message.Substring(command.Length));
 
             context.Wait(MessageReceivedAsync);
         }
@@ -47,6 +47,7 @@ namespace awesome_bot.Dialogs
         private static string RemoveMentions(IMessageActivity activity)
             => activity.GetMentions()
                 .Where(mention => mention.Mentioned.Id == activity.Recipient.Id && mention.Text != null)
-                .Aggregate(activity.Text, (current, mention) => current.Replace(mention.Text, string.Empty));
+                .Aggregate(activity.Text, (current, mention) => current.Replace(mention.Text, string.Empty))
+                .Trim();
     }
 }

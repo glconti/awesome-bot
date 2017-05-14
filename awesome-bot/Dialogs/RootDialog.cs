@@ -27,7 +27,7 @@ namespace awesome_bot.Dialogs
                 return;
             }
 
-            var message = RemoveMentions(activity);
+            var message = activity.RemoveRecipientMention();
             var command = message.Split(' ').FirstOrDefault();
 
             var commandHandler = CommandHandlerFactory.Handle(command);
@@ -43,11 +43,5 @@ namespace awesome_bot.Dialogs
 
             context.Wait(MessageReceivedAsync);
         }
-
-        private static string RemoveMentions(IMessageActivity activity)
-            => activity.GetMentions()
-                .Where(mention => mention.Mentioned.Id == activity.Recipient.Id && mention.Text != null)
-                .Aggregate(activity.Text, (current, mention) => current.Replace(mention.Text, string.Empty))
-                .Trim();
     }
 }

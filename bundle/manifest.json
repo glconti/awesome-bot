@@ -1,0 +1,27 @@
+{
+    "$schema": "https://statics.teams.microsoft.com/sdk/v0.4/manifest/MicrosoftTeams.schema.json",
+    "manifestVersion": "0.4",
+    "id": "99cc4916-a23e-42a3-b18d-eb1570931c28",
+    "version": "1.0",
+    "description": {
+        "short": "An awesome bot",
+        "full": "An awesome bot",
+        "long": "An awesome bot"
+    },
+    "icons": {
+        "44": "awesome_44.png",
+        "88": "awesome_88.png"
+    },
+    "developer": {
+        "name": "Gianluigi Conti",
+        "websiteUrl": "https://github.com/glconti/awesome-bot",
+        "privacyUrl": "https://github.com/glconti/awesome-bot",
+        "termsOfUseUrl": "https://github.com/glconti/awesome-bot"
+    },
+    "bots": [
+        {
+            "mri": "99cc4916-a23e-42a3-b18d-eb1570931c28"
+        }
+    ],
+    "needsIdentity": true
+}

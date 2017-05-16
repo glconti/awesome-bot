@@ -6,7 +6,7 @@ using awesome_bot.Dialogs;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 
-namespace awesome_bot
+namespace awesome_bot.Controllers
 {
     [BotAuthentication]
     public class MessagesController : ApiController

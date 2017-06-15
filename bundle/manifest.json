@@ -1,27 +1,49 @@
 {
   "$schema": "https://statics.teams.microsoft.com/sdk/v1.0/manifest/MicrosoftTeams.schema.json",
   "manifestVersion": "1.0",
-  "id": "99cc4916-a23e-42a3-b18d-eb1570931c28",
-  "version": "1.0",
+  "version": "1.0.0",
+  "id": "a14f6da3-5439-43ba-ab7d-8877faba91c0",
+  "packageName": "bot.awesome",
+  "developer": {
+    "name": "Gianluigi Conti",
+    "websiteUrl": "https://github.com/glconti/awesome-bot",
+    "privacyUrl": "https://website.com/privacyhttps://github.com/glconti/awesome-bot",
+    "termsOfUseUrl": "https://github.com/glconti/awesome-bot"
+  },
+  "name": {
+    "short": "Awesome bot",
+    "full": "Awesome bot"
+  },
   "description": {
     "short": "An awesome bot",
-    "full": "An awesome bot",
-    "long": "An awesome bot"
+    "full": "An awesome bot"
   },
   "icons": {
     "outline": "awesome_bot_20x20.png",
     "color": "awesome_bot_96x96.png"
   },
-  "developer": {
-    "name": "Gianluigi Conti",
-    "websiteUrl": "https://github.com/glconti/awesome-bot",
-    "privacyUrl": "https://github.com/glconti/awesome-bot",
-    "termsOfUseUrl": "https://github.com/glconti/awesome-bot"
-  },
+  "accentColor": "#F6E83E",
   "bots": [
     {
-      "mri": "99cc4916-a23e-42a3-b18d-eb1570931c28"
+      "botId": "99cc4916-a23e-42a3-b18d-eb1570931c28",
+      "needsChannelSelector": true,
+      "isNotificationOnly": false,
+      "scopes": [ "team" ],
+      "commandLists": [
+        {
+          "scopes": ["team"],
+          "commands": [
+            {
+              "title": "Pick",
+              "description": "Randomly chooses an element of a cmma separated list. e.g. Pick 1,2,3   Choose 1,2,3"
+            }
+          ]
+        }
+      ]
     }
   ],
-  "needsIdentity": true
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ]
 }

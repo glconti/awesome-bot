@@ -1,0 +1,93 @@
+﻿{
+  "luis_schema_version": "2.0.0",
+  "versionId": "0.1",
+  "name": "AwesomeBot",
+  "desc": "An awesome bot",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "RandomPick"
+    }
+  ],
+  "entities": [
+    {
+      "name": "Item"
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "nothing",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "Pick 4,6,9",
+      "intent": "RandomPick",
+      "entities": [
+        {
+          "entity": "Item",
+          "startPos": 5,
+          "endPos": 6
+        },
+        {
+          "entity": "Item",
+          "startPos": 7,
+          "endPos": 8
+        },
+        {
+          "entity": "Item",
+          "startPos": 10,
+          "endPos": 11
+        }
+      ]
+    },
+    {
+      "text": "Choose 8,1,3",
+      "intent": "RandomPick",
+      "entities": [
+        {
+          "entity": "Item",
+          "startPos": 7,
+          "endPos": 8
+        },
+        {
+          "entity": "Item",
+          "startPos": 8,
+          "endPos": 9
+        },
+        {
+          "entity": "Item",
+          "startPos": 11,
+          "endPos": 12
+        }
+      ]
+    },
+    {
+      "text": "Choose between alfa, beta and gamma",
+      "intent": "RandomPick",
+      "entities": [
+        {
+          "entity": "Item",
+          "startPos": 16,
+          "endPos": 20
+        },
+        {
+          "entity": "Item",
+          "startPos": 22,
+          "endPos": 26
+        },
+        {
+          "entity": "Item",
+          "startPos": 31,
+          "endPos": 35
+        }
+      ]
+    }
+  ]
+}

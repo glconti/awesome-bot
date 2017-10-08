@@ -28,17 +28,9 @@
       "botId": "99cc4916-a23e-42a3-b18d-eb1570931c28",
       "needsChannelSelector": true,
       "isNotificationOnly": false,
-      "scopes": [ "team" ],
-      "commandLists": [
-        {
-          "scopes": ["team"],
-          "commands": [
-            {
-              "title": "Pick",
-              "description": "Randomly chooses an element of a cmma separated list. e.g. Pick 1,2,3   Choose 1,2,3"
-            }
-          ]
-        }
+      "scopes": [
+        "team",
+        "personal"
       ]
     }
   ],

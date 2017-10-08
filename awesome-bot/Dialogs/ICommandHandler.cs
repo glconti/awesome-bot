@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Connector;
 
 namespace awesome_bot.Dialogs
 {
@@ -8,7 +9,7 @@ namespace awesome_bot.Dialogs
     {
         IEnumerable<string> Commands { get; }
 
-        Task Answer(IDialogContext context, string args);
+        Task Answer(IDialogContext context, Activity activity, string args);
 
         string GetHelp();
     }

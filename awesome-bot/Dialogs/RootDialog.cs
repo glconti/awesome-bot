@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
@@ -28,7 +28,7 @@ namespace awesome_bot.Dialogs
             }
 
             var message = activity.RemoveRecipientMention().Trim();
-            var words = message.Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var words = message.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
             var command = words.FirstOrDefault();
 
             var commandHandler = CommandHandlerFactory.Handle(command);
@@ -40,7 +40,7 @@ namespace awesome_bot.Dialogs
                 return;
             }
 
-            await commandHandler.Answer(context, string.Join(" ", words.Skip(1)));
+            await commandHandler.Answer(context, activity, string.Join(" ", words.Skip(1)));
 
             context.Wait(MessageReceivedAsync);
         }

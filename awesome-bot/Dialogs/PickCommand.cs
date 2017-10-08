@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Connector;
 
 namespace awesome_bot.Dialogs
 {
@@ -16,7 +17,7 @@ namespace awesome_bot.Dialogs
             "pick"
         };
 
-        public async Task Answer(IDialogContext context, string args)
+        public async Task Answer(IDialogContext context, Activity activity, string args)
         {
             var items = args.Split(new[] {' ', ','}, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Trim())

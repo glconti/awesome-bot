@@ -117,6 +117,11 @@
     <Compile Include="Dialogs\ICommandHandler.cs" />
     <Compile Include="Dialogs\PickCommand.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
+    <Compile Include="Giphy\GiphyCommand.cs" />
+    <Compile Include="Giphy\GiphyEndPoints.cs" />
+    <Compile Include="Giphy\RandomEndPoint.cs" />
+    <Compile Include="Giphy\Rating.cs" />
+    <Compile Include="Giphy\GiphyResponse.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -132,6 +137,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using awesome_bot.Giphy;
 
 namespace awesome_bot.Dialogs
 {
@@ -10,7 +11,8 @@ namespace awesome_bot.Dialogs
         private static readonly List<ICommandHandler> CommandHandlers =
             new List<ICommandHandler>
             {
-                new PickCommand()
+                new PickCommand(),
+                new GiphyCommand()
             };
 
         public static ICommandHandler Handle(string command)

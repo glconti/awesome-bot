@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -13,7 +14,8 @@ namespace awesome_bot.Dialogs
             };
 
         public static ICommandHandler Handle(string command)
-            => CommandHandlers.FirstOrDefault(x => x.Commands.Any(c => c == command));
+            => CommandHandlers.FirstOrDefault(x => x.Commands.Any(c =>
+                string.Equals(c, command, StringComparison.OrdinalIgnoreCase)));
 
         public static string GetGuide()
         {

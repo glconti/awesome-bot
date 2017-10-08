@@ -27,19 +27,20 @@ namespace awesome_bot.Dialogs
                 return;
             }
 
-            var message = activity.RemoveRecipientMention();
-            var command = message.Split(' ').FirstOrDefault();
+            var message = activity.RemoveRecipientMention().Trim();
+            var words = message.Split(new []{' '}, StringSplitOptions.RemoveEmptyEntries);
+            var command = words.FirstOrDefault();
 
             var commandHandler = CommandHandlerFactory.Handle(command);
             if (commandHandler == null)
             {
-                await context.PostAsync($"Sorry, I don't understand {message}");
+                await context.PostAsync($"Sorry, I don't understand \"{message}\"");
                 await context.PostAsync(CommandHandlerFactory.GetGuide());
                 context.Wait(MessageReceivedAsync);
                 return;
             }
 
-            await commandHandler.Answer(context, message.Substring(command.Length));
+            await commandHandler.Answer(context, string.Join(" ", words.Skip(1)));
 
             context.Wait(MessageReceivedAsync);
         }

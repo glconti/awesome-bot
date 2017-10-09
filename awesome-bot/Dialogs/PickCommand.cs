@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
@@ -40,9 +41,14 @@ namespace awesome_bot.Dialogs
 
                 await context.PostAsync($"I randomly choose {chosenItem}");
             }
-            catch (Exception exception)
+            catch (Exception e)
             {
-                await context.PostAsync("Sorry I didn't understand");
+                Trace.TraceError(string.Join(Environment.NewLine,
+                    "Error during random choice",
+                    e.Message,
+                    e.StackTrace));
+
+                await context.PostAsync("Ops, something went wrong");
                 await context.PostAsync("Usage: " + GetHelp());
             }
         }

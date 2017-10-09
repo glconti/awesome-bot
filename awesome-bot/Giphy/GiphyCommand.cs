@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Threading.Tasks;
 using awesome_bot.Dialogs;
@@ -39,9 +41,14 @@ namespace awesome_bot.Giphy
                     await context.PostAsync(reply);
                 }
             }
-            catch
+            catch (Exception e)
             {
-                await context.PostAsync("Sorry I didn't understand");
+                Trace.TraceError(string.Join(Environment.NewLine,
+                    "Error during random gif search",
+                    e.Message,
+                    e.StackTrace));
+
+                await context.PostAsync("Ops, something went wrong");
                 await context.PostAsync("Usage: " + GetHelp());
             }
         }

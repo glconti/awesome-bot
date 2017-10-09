@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
@@ -40,38 +39,13 @@ namespace awesome_bot.Giphy
                     await context.PostAsync(reply);
                 }
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine(e);
-                throw;
+                await context.PostAsync("Sorry I didn't understand");
+                await context.PostAsync("Usage: " + GetHelp());
             }
-
-            //Console.WriteLine(html);
-
-            //if (items.Count < 1)
-            //{
-            //    await context.PostAsync("I don't know what to choose");
-            //    return;
-            //}
-            //if (items.Count == 1)
-            //{
-            //    await context.PostAsync($"I definitely choose {items[0]}");
-            //    return;
-            //}
-
-            //try
-            //{
-            //    var chosenItem = items[_random.Next(0, items.Count)];
-
-            //    await context.PostAsync($"I randomly choose {chosenItem}");
-            //}
-            //catch (Exception exception)
-            //{
-            //    await context.PostAsync("Sorry I didn't understand");
-            //    await context.PostAsync("Usage: " + GetHelp());
-            //}
         }
 
-        public string GetHelp() => throw new NotImplementedException();
+        public string GetHelp() => string.Join("|", Commands) + " search text";
     }
 }

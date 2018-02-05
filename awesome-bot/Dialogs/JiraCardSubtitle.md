@@ -1,0 +1,1 @@
+**Type:** {0}    **Priority:** {1}    **Status:** {2}    **Assignee:** {3}

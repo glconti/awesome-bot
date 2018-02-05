@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Configuration;
+using awesome_bot.Properties;
 using Atlassian.Jira;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
@@ -60,11 +61,15 @@ namespace awesome_bot.Dialogs
 
                     if (issue == null) new ThumbnailCard(search.Ticket, "Not found").ToAttachment();
 
-                    return new ThumbnailCard(issue.Key.ToString(), issue.Summary).ToAttachment();
+                    return new ThumbnailCard(issue.Key.ToString() + ": " + issue.Summary,
+                        string.Format(Resources.JiraCardSubtitle,
+                            issue.Type.Name,
+                            issue.Priority.Name,
+                            issue.Status.Name,
+                            issue.Assignee)).ToAttachment();
                 }).ToList();
 
-
-                var reply = context.MakeMessage();
+                var reply = activity.CreateReply();
 
                 reply.AttachmentLayout = AttachmentLayoutTypes.List;
                 reply.Attachments = thumbnailCards;

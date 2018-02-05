@@ -45,8 +45,12 @@ namespace awesome_bot.Dialogs
 
                 var jira = Jira.CreateRestClient(JiraAddress, JiraUser, JiraApiToken);
 
-                var searches = tickets.OrderBy(t => t).Select(t => (Ticket: t, Task: jira.Issues.GetIssueAsync(t)))
-                    .ToArray();
+                var searches = tickets.OrderBy(t => t)
+                    .Select(t => new
+                    {
+                        Ticket = t,
+                        Task = jira.Issues.GetIssueAsync(t)
+                    }).ToArray();
 
                 await Task.WhenAll(searches.Select(t => t.Task));
 

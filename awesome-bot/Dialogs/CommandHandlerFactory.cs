@@ -12,12 +12,25 @@ namespace awesome_bot.Dialogs
             new List<ICommandHandler>
             {
                 new PickCommand(),
-                new GiphyCommand()
+                new GiphyCommand(),
+                new JiraSearcher()
             };
 
-        public static ICommandHandler Handle(string command)
-            => CommandHandlers.FirstOrDefault(x => x.Commands.Any(c =>
-                string.Equals(c, command, StringComparison.OrdinalIgnoreCase)));
+        public static ICommandHandler Handle(string message)
+        {
+            return CommandHandlers.FirstOrDefault(x => x.Keywords.Any(message.Contains)) ?? HandleCommand(message);
+        }
+
+        public static ICommandHandler HandleCommand(string message)
+        {
+            var words = message.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            var command = words.FirstOrDefault();
+
+            var commandHandler = CommandHandlers.FirstOrDefault(x =>
+                x.Commands.Any(c => string.Equals(c, command, StringComparison.OrdinalIgnoreCase)));
+
+            return commandHandler;
+        }
 
         public static string GetGuide()
         {

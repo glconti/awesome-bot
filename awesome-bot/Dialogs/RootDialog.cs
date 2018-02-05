@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
@@ -28,10 +27,8 @@ namespace awesome_bot.Dialogs
             }
 
             var message = activity.RemoveRecipientMention().Trim();
-            var words = message.Split(new[] {' '}, StringSplitOptions.RemoveEmptyEntries);
-            var command = words.FirstOrDefault();
 
-            var commandHandler = CommandHandlerFactory.Handle(command);
+            var commandHandler = CommandHandlerFactory.Handle(message);
             if (commandHandler == null)
             {
                 await context.PostAsync($"Sorry, I don't understand \"{message}\"");
@@ -40,7 +37,7 @@ namespace awesome_bot.Dialogs
                 return;
             }
 
-            await commandHandler.Answer(context, activity, string.Join(" ", words.Skip(1)));
+            await commandHandler.Answer(context, activity, message);
 
             context.Wait(MessageReceivedAsync);
         }

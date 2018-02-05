@@ -138,6 +138,7 @@
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\CommandHandlerFactory.cs" />
     <Compile Include="Dialogs\ICommandHandler.cs" />
+    <Compile Include="Dialogs\JiraSearcher.cs" />
     <Compile Include="Dialogs\PickCommand.cs" />
     <Compile Include="Dialogs\RootDialog.cs" />
     <Compile Include="Giphy\GiphyCommand.cs" />

@@ -61,7 +61,7 @@ namespace awesome_bot.Dialogs
 
                     if (issue == null) new ThumbnailCard(search.Ticket, "Not found").ToAttachment();
 
-                    return new ThumbnailCard(issue.Key.ToString() + ": " + issue.Summary,
+                    return new ThumbnailCard(issue.Key.ToString() + ": " + issue.Summary, text:
                         string.Format(Resources.JiraCardSubtitle,
                             issue.Type.Name,
                             issue.Priority.Name,

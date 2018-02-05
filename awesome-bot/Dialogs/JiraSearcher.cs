@@ -46,7 +46,7 @@ namespace awesome_bot.Dialogs
 
                 var jira = Jira.CreateRestClient(JiraAddress, JiraUser, JiraApiToken);
 
-                var searches = tickets.OrderBy(t => t)
+                var searches = tickets.Distinct().OrderBy(t => t)
                     .Select(t => new
                     {
                         Ticket = t,

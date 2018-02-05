@@ -1,1 +1,1 @@
-**Type:** {0}    **Priority:** {1}    **Status:** {2}    **Assignee:** {3}
+<strong>Type:</strong> {0}    <strong>Priority:</strong> {1}    <strong>Status:</strong> {2}    <strong>Assignee:</strong> {3}

@@ -59,10 +59,11 @@ namespace awesome_bot.Dialogs
                 {
                     var issue = search.Task.Result;
 
-                    if (issue == null) new ThumbnailCard(search.Ticket, "Not found").ToAttachment();
+                    if (issue == null) new ThumbnailCard(subtitle: search.Ticket, text: "Not found").ToAttachment();
 
-                    return new ThumbnailCard(issue.Key.ToString() + ": " + issue.Summary, text:
-                        string.Format(Resources.JiraCardSubtitle,
+                    return new ThumbnailCard(
+                        subtitle: issue.Key.ToString() + ": " + issue.Summary,
+                        text: string.Format(Resources.JiraCardSubtitle,
                             issue.Type.Name,
                             issue.Priority.Name,
                             issue.Status.Name,

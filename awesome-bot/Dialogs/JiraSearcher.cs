@@ -13,15 +13,17 @@ namespace awesome_bot.Dialogs
 {
     public class JiraSearcher : ICommandHandler
     {
+        private static readonly IReadOnlyList<string> InnerKeywords =
+            WebConfigurationManager.AppSettings["JiraTicketKeywords"].Split(',').ToList();
+
         private static readonly Regex Regex = new Regex($@"(?<ticket>({string.Join("|", InnerKeywords)})-\d+)",
             RegexOptions.Compiled);
 
         private static string JiraAddress { get; } = WebConfigurationManager.AppSettings["JiraEndpoint"];
-        private static string JiraUser { get; } = WebConfigurationManager.AppSettings["AtlassianUser"];
-        private static string JiraApiToken { get; } = WebConfigurationManager.AppSettings["AtlassianAPIKey"];
 
-        private static IReadOnlyList<string> InnerKeywords { get; } =
-            WebConfigurationManager.AppSettings["JiraTicketKeywords"].Split(',').ToList();
+        private static string JiraUser { get; } = WebConfigurationManager.AppSettings["AtlassianUser"];
+
+        private static string JiraApiToken { get; } = WebConfigurationManager.AppSettings["AtlassianAPIKey"];
 
         public IEnumerable<string> Keywords => InnerKeywords;
 
@@ -43,7 +45,8 @@ namespace awesome_bot.Dialogs
 
                 var jira = Jira.CreateRestClient(JiraAddress, JiraUser, JiraApiToken);
 
-                var searches = tickets.Select(t => (Ticket: t, Task: jira.Issues.GetIssueAsync(t))).ToArray();
+                var searches = tickets.OrderBy(t => t).Select(t => (Ticket: t, Task: jira.Issues.GetIssueAsync(t)))
+                    .ToArray();
 
                 await Task.WhenAll(searches.Select(t => t.Task));
 

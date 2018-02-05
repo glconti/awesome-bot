@@ -12,6 +12,8 @@ namespace awesome_bot.Dialogs
     {
         private readonly Random _random = new Random();
 
+        public IEnumerable<string> Keywords { get; } = Enumerable.Empty<string>();
+
         public IEnumerable<string> Commands { get; } = new HashSet<string>
         {
             "choose",
@@ -20,6 +22,8 @@ namespace awesome_bot.Dialogs
 
         public async Task Answer(IDialogContext context, Activity activity, string args)
         {
+            args = Commands.Aggregate(args, (current, command) => current.Replace(command, string.Empty));
+
             var items = args.Split(new[] {' ', ','}, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Trim())
                 .ToList();
@@ -29,6 +33,7 @@ namespace awesome_bot.Dialogs
                 await context.PostAsync("I don't know what to choose");
                 return;
             }
+
             if (items.Count == 1)
             {
                 await context.PostAsync($"I definitely choose {items[0]}");

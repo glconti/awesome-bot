@@ -7,6 +7,8 @@ namespace awesome_bot.Dialogs
 {
     internal interface ICommandHandler
     {
+        IEnumerable<string> Keywords { get; }
+
         IEnumerable<string> Commands { get; }
 
         Task Answer(IDialogContext context, Activity activity, string args);

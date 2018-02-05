@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using awesome_bot.Dialogs;
@@ -11,6 +12,8 @@ namespace awesome_bot.Giphy
 {
     public class GiphyCommand : ICommandHandler
     {
+        public IEnumerable<string> Keywords { get; } = Enumerable.Empty<string>();
+
         public IEnumerable<string> Commands { get; } = new HashSet<string>
         {
             "gif",
@@ -19,6 +22,8 @@ namespace awesome_bot.Giphy
 
         public async Task Answer(IDialogContext context, Activity activity, string args)
         {
+            args = Commands.Aggregate(args, (current, command) => current.Replace(command, string.Empty));
+
             var build = GiphyEndPoints.Random.Build(args);
 
             try

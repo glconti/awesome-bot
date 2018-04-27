@@ -31,17 +31,11 @@ namespace awesome_bot.Giphy
                 using (var wc = new WebClient())
                 {
                     var rawData = await wc.DownloadStringTaskAsync(build);
-
                     var giphyResponse = GiphyResponse.FromJson(rawData);
 
-                    var animationCard =
-                        new AnimationCard(media: new List<MediaUrl>
-                        {
-                            new MediaUrl(giphyResponse.Data.ImageOriginalUrl)
-                        });
-
                     var reply = activity.CreateReply();
-                    reply.Attachments.Add(animationCard.ToAttachment());
+                    reply.TextFormat = TextFormatTypes.Xml;
+                    reply.Text = $"<img src=\"{giphyResponse.Data.ImageOriginalUrl}\" />";
 
                     await context.PostAsync(reply);
                 }

@@ -8,7 +8,7 @@ namespace awesome_bot.Giphy
 
             public string Build(string searchText, Rating rating = null)
                 => string.Join(string.Empty, Root, RandomPath, "?",
-                    $"api_key={ApiKey}&tag={searchText}&rating={rating ?? Rating.G}");
+                    $"api_key={ApiKey}&tag={searchText}&rating={rating ?? Rating.PG13}");
         }
     }
 }

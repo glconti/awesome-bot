@@ -35,7 +35,8 @@ namespace awesome_bot.Giphy
 
                     var reply = activity.CreateReply();
                     reply.TextFormat = TextFormatTypes.Xml;
-                    reply.Text = $"<img src=\"{giphyResponse.Data.ImageOriginalUrl}\" />";
+                    reply.Text =
+                        $"<img src=\"{giphyResponse.Data.ImageOriginalUrl}\" alt=\"{giphyResponse.Data.Caption}\" height=\"{giphyResponse.Data.ImageHeight}\" width=\"{giphyResponse.Data.ImageWidth}\" />";
 
                     await context.PostAsync(reply);
                 }

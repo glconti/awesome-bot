@@ -50,10 +50,6 @@ namespace awesome_bot.Giphy
 
         [JsonProperty("is_sticker")] public long IsSticker { get; set; }
 
-        [JsonProperty("import_datetime")] public DateTimeOffset ImportDatetime { get; set; }
-
-        [JsonProperty("trending_datetime")] public DateTimeOffset TrendingDatetime { get; set; }
-
         [JsonProperty("images")] public Images Images { get; set; }
 
         [JsonProperty("title")] public string Title { get; set; }

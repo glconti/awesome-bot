@@ -24,7 +24,7 @@ namespace awesome_bot.Giphy
         {
             args = Commands.Aggregate(args, (current, command) => current.Replace(command, string.Empty));
 
-            var build = GiphyEndPoints.Random.Build(args);
+            var build = GiphyEndPoints.Search.Build(args);
 
             try
             {
@@ -35,8 +35,10 @@ namespace awesome_bot.Giphy
 
                     var reply = activity.CreateReply();
                     reply.TextFormat = TextFormatTypes.Xml;
+
+                    var data = giphyResponse.Data[0];
                     reply.Text =
-                        $"<img src=\"{giphyResponse.Data.ImageOriginalUrl}\" alt=\"{giphyResponse.Data.Caption}\" height=\"{giphyResponse.Data.ImageHeight}\" width=\"{giphyResponse.Data.ImageWidth}\" />";
+                        $"<img src=\"{data.Images.Original["url"]}\" alt=\"{data.Title}\" height=\"{data.Images.Original["height"]}\" width=\"{data.Images.Original["width"]}\" />";
 
                     await context.PostAsync(reply);
                 }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace awesome_bot.Giphy
@@ -10,11 +12,7 @@ namespace awesome_bot.Giphy
             DateParseHandling = DateParseHandling.None
         };
 
-        [JsonProperty("data")]
-        public Data Data { get; set; }
-
-        [JsonProperty("meta")]
-        public Meta Meta { get; set; }
+        [JsonProperty("data")] public Data[] Data { get; set; }
 
         public static GiphyResponse FromJson(string json)
             => JsonConvert.DeserializeObject<GiphyResponse>(json, Settings);
@@ -24,91 +22,65 @@ namespace awesome_bot.Giphy
 
     public class Data
     {
-        [JsonProperty("fixed_height_small_width")]
-        public string FixedHeightSmallWidth { get; set; }
+        [JsonProperty("type")] public string Type { get; set; }
 
-        [JsonProperty("id")]
-        public string Id { get; set; }
+        [JsonProperty("id")] public string Id { get; set; }
 
-        [JsonProperty("fixed_height_downsampled_width")]
-        public string FixedHeightDownsampledWidth { get; set; }
+        [JsonProperty("slug")] public string Slug { get; set; }
 
-        [JsonProperty("fixed_height_downsampled_height")]
-        public string FixedHeightDownsampledHeight { get; set; }
+        [JsonProperty("url")] public string Url { get; set; }
 
-        [JsonProperty("caption")]
-        public string Caption { get; set; }
+        [JsonProperty("bitly_gif_url")] public string BitlyGifUrl { get; set; }
 
-        [JsonProperty("fixed_height_downsampled_url")]
-        public string FixedHeightDownsampledUrl { get; set; }
+        [JsonProperty("bitly_url")] public string BitlyUrl { get; set; }
 
-        [JsonProperty("fixed_height_small_still_url")]
-        public string FixedHeightSmallStillUrl { get; set; }
+        [JsonProperty("embed_url")] public string EmbedUrl { get; set; }
 
-        [JsonProperty("fixed_height_small_height")]
-        public string FixedHeightSmallHeight { get; set; }
+        [JsonProperty("username")] public string Username { get; set; }
 
-        [JsonProperty("fixed_height_small_url")]
-        public string FixedHeightSmallUrl { get; set; }
+        [JsonProperty("source")] public string Source { get; set; }
 
-        [JsonProperty("fixed_width_small_height")]
-        public string FixedWidthSmallHeight { get; set; }
+        [JsonProperty("rating")] public string Rating { get; set; }
 
-        [JsonProperty("fixed_width_downsampled_url")]
-        public string FixedWidthDownsampledUrl { get; set; }
+        [JsonProperty("content_url")] public string ContentUrl { get; set; }
 
-        [JsonProperty("fixed_width_downsampled_height")]
-        public string FixedWidthDownsampledHeight { get; set; }
+        [JsonProperty("source_tld")] public string SourceTld { get; set; }
 
-        [JsonProperty("fixed_width_downsampled_width")]
-        public string FixedWidthDownsampledWidth { get; set; }
+        [JsonProperty("source_post_url")] public string SourcePostUrl { get; set; }
 
-        [JsonProperty("fixed_width_small_url")]
-        public string FixedWidthSmallUrl { get; set; }
+        [JsonProperty("is_sticker")] public long IsSticker { get; set; }
 
-        [JsonProperty("fixed_width_small_still_url")]
-        public string FixedWidthSmallStillUrl { get; set; }
+        [JsonProperty("import_datetime")] public DateTimeOffset ImportDatetime { get; set; }
 
-        [JsonProperty("fixed_width_small_width")]
-        public string FixedWidthSmallWidth { get; set; }
+        [JsonProperty("trending_datetime")] public DateTimeOffset TrendingDatetime { get; set; }
 
-        [JsonProperty("image_original_url")]
-        public string ImageOriginalUrl { get; set; }
+        [JsonProperty("images")] public Images Images { get; set; }
 
-        [JsonProperty("image_height")]
-        public string ImageHeight { get; set; }
+        [JsonProperty("title")] public string Title { get; set; }
 
-        [JsonProperty("image_frames")]
-        public string ImageFrames { get; set; }
+        [JsonProperty("_score")] public double Score { get; set; }
+    }
 
-        [JsonProperty("image_mp4_url")]
-        public string ImageMp4Url { get; set; }
-
-        [JsonProperty("image_width")]
-        public string ImageWidth { get; set; }
-
-        [JsonProperty("type")]
-        public string Type { get; set; }
-
-        [JsonProperty("image_url")]
-        public string ImageUrl { get; set; }
-
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [JsonProperty("username")]
-        public string Username { get; set; }
+    public class Images
+    {
+        [JsonProperty("original")] public Dictionary<string, string> Original { get; set; }
     }
 
     public class Meta
     {
-        [JsonProperty("response_id")]
-        public string ResponseId { get; set; }
+        [JsonProperty("status")] public long Status { get; set; }
 
-        [JsonProperty("msg")]
-        public string Msg { get; set; }
+        [JsonProperty("msg")] public string Msg { get; set; }
 
-        [JsonProperty("status")]
-        public long Status { get; set; }
+        [JsonProperty("response_id")] public string ResponseId { get; set; }
+    }
+
+    public class Pagination
+    {
+        [JsonProperty("total_count")] public long TotalCount { get; set; }
+
+        [JsonProperty("count")] public long Count { get; set; }
+
+        [JsonProperty("offset")] public long Offset { get; set; }
     }
 }

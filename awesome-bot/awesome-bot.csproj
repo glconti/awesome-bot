@@ -156,6 +156,7 @@
     <Compile Include="Giphy\RandomEndPoint.cs" />
     <Compile Include="Giphy\Rating.cs" />
     <Compile Include="Giphy\GiphyResponse.cs" />
+    <Compile Include="Giphy\SearchEndPoint.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

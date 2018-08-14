@@ -8,5 +8,7 @@ namespace awesome_bot.Giphy
         private static string ApiKey { get; } = WebConfigurationManager.AppSettings["GiphyAPIKey"];
 
         public static RandomEndPoint Random { get; } = new RandomEndPoint();
+
+        public static SearchEndPoint Search { get; } = new SearchEndPoint();
     }
 }

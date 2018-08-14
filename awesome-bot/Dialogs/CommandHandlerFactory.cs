@@ -18,7 +18,9 @@ namespace awesome_bot.Dialogs
 
         public static ICommandHandler Handle(string message)
         {
-            return CommandHandlers.FirstOrDefault(x => x.Keywords.Any(message.Contains)) ?? HandleCommand(message);
+            var lowerMessage = message.ToLower();
+
+            return CommandHandlers.FirstOrDefault(x => x.Commands.Any(lowerMessage.Contains)) ?? HandleCommand(message);
         }
 
         public static ICommandHandler HandleCommand(string message)

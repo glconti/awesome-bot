@@ -36,7 +36,10 @@ namespace awesome_bot.Giphy
                     var reply = activity.CreateReply();
                     reply.TextFormat = TextFormatTypes.Xml;
 
-                    var data = giphyResponse.Data[0];
+                    var gifIndex = new Random().Next(0, 24);
+
+                    var data = giphyResponse.Data[gifIndex];
+
                     reply.Text =
                         $"<img src=\"{data.Images.Original["url"]}\" alt=\"{data.Title}\" height=\"{data.Images.Original["height"]}\" width=\"{data.Images.Original["width"]}\" />";
 
